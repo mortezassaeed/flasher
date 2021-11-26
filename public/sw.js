@@ -16,14 +16,26 @@ this.addEventListener('install',event =>{
         })
     )
 })
+
+
+this.addEventListener('activate', function(event) {
+    var cacheAllowlist = ['flsher-v1'];
+    event.waitUntil(
+      caches.keys().then(function(cacheNames) {
+        return Promise.all(
+          cacheNames.map(function(cacheName) {
+            if (cacheAllowlist.indexOf(cacheName) === -1) {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      })
+    );
+  });
+  
+
 this.addEventListener('fetch',event => {
     
-    // event.waitUntil(
-    //     this.registration.showNotification("hello",{
-    //         body : "hello from notification"
-    //     })
-    // )
-
     if(!navigator.onLine)
     {
         event.respondWith(
@@ -38,3 +50,10 @@ this.addEventListener('fetch',event => {
         )
     }
 })
+
+
+self.addEventListener('push', function (event) {
+    event.waitUntil(self.registration.showNotification('success', {
+        body: event.data.text()
+    }));
+});

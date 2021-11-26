@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
@@ -7,8 +8,12 @@ import Home from './Home';
 import About from './About';
 import User from './User';
 function App() {
+
+
+  useEffect(()=>{
+  
+},[])
   return (
-   
     <div className="App">
       <Router>
         <Navbar bg="dark" variant="dark">
