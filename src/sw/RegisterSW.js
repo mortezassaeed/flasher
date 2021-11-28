@@ -1,4 +1,4 @@
-import notifyMe from '../notify'
+import notifyMe from '../components/notify'
 
 export default async function RegisterSW() {
     const swUrl = `${process.env.PUBLIC_URL}/sw.js`;

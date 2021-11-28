@@ -7,14 +7,15 @@ import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from './Home';
 import About from './About';
 import User from './User';
-import notifyMe from './notify';
+import notifyMe from './components/notify';
 import {PrivateRoute} from './components/router/privateRoute'
 import Dashboard from './components/dashboard'
+import NotFound from './components/notify'
 
 function App() {
 
   useEffect(() => {
-    notifyMe("notify from app js")
+    // notifyMe("notify from app js")
   }, [])
 
   return (
@@ -36,8 +37,9 @@ function App() {
           <Route path="/User" element={<User></User>}></Route>
           <Route
             path="/dashboard"
-            element={<PrivateRoute component={Dashboard} />}
-        />
+            element={<PrivateRoute component={Dashboard} path="/dashboard" />}
+          />
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Router>
     </div>
