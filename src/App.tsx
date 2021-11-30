@@ -1,18 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-import Home from './Home';
-import About from './About';
+import Home from './components/Home';
+import About from './components/About';
 import User from './User';
+import notifyMe from './components/notify';
+import {PrivateRoute} from './components/router/privateRoute'
+import Dashboard from './components/dashboard'
+import NotFound from './components/notFound'
+
 function App() {
 
+  useEffect(() => {
+    // notifyMe("notify from app js")
+  }, [])
 
-  useEffect(()=>{
-  
-},[])
   return (
     <div className="App">
       <Router>
@@ -27,9 +31,14 @@ function App() {
           </Container>
         </Navbar>
         <Routes>
-          <Route path="/" element={<Home></Home>}></Route>
-          <Route path="/About" element={<About></About>}></Route>
-          <Route path="/User" element={<User></User>}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/About" element={<About />}></Route>
+          <Route path="/User" element={<User />}></Route>
+          <Route
+            path="/dashboard"
+            element={<PrivateRoute RouteComponent={Dashboard} path="/dashboard" />}
+          />
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Router>
     </div>
