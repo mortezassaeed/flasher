@@ -24,10 +24,10 @@
 // }
 
 
-export default function notifyMe(message) {
+export default function notifyMe(message: string) {
   navigator.serviceWorker.getRegistration().then(registration => {
     setTimeout(() => {
-        registration.showNotification('Title', {
+        registration?.showNotification('Title', {
             body: message,
             badge: '/images/icon-light.png',
             icon: '/images/icon-light.png',
